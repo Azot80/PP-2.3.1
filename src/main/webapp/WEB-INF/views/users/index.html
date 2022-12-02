@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>WEBCRUDAPP</title>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <h2 class="center"> CRM Users</h2>
+    </div>
+</div>
+
+<input type="button" value="Добавить user" onclick="window.location.href='users/showAddingForm'; return false"/>
+
+<div id="container">
+    <div id="content">
+        <table>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>e-mail</th>
+                <th>Действие</th>
+            </tr>
+            <tr th:each="user : ${usersList}">
+                <td th:text="${user.getName}">User</td>
+                <td th:text="${user.getLastName}">User</td>
+                <td th:text="${user.getEmail}">User</td>
+                <td>
+                    <a th:href="@{/users/{id}/showFormForEdit(id=${user.getId()})}">Редактировать</a> | <a
+                        th:href="@{/users/{id}/delete(id=${user.getId()})}">Удалить</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
